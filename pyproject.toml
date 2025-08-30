@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "weathervane"
+version = "0.1.0"
+description = "A simple flask web app to get weather data"
+authors = ["Liam Spatola <liam.spatola@gmail.com>"]
+license = "GNU GPLv3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+flask = "^3.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
