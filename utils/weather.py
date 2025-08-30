@@ -1,25 +1,66 @@
 import requests
+from tzfpy import get_tz
 
 
 class Weather:
-    def __init__(self, location=None):
+    def __init__(self, city=None, coords=None, timezone=None):
         self.base_url = "https://wttr.in"
-        self.location = location
+        self.city = city
+        self.coords = coords
+        self.timezone = timezone
 
     def get_location_by_user_ip(self):
         try:
             response = requests.get("https://ipinfo.io/json")
             response.raise_for_status()
             data = response.json()
-            city = data["city"]
 
-            return city if city else None
+            city = data["city"]
+            
+            unformatted_coords = data["loc"].split(",")
+            coords = {
+                "lat": unformatted_coords[0],
+                "lng": unformatted_coords[1]
+            }
+            
+            timezone = data["timezone"]
+
+            return (city, coords, timezone)
+        except Exception:
+            return None
+        
+    def get_location_by_name(self, place_name):
+        try:
+            headers = {"User-Agent": "WeatherVane/1.0"}
+            response = requests.get(f"https://nominatim.openstreetmap.org/search?q={place_name}&format=json", headers=headers)
+            response.raise_for_status()
+            data = response.json()[0]
+
+            city = data["name"]
+
+            coords = {
+                "lat": data["lat"],
+                "lng": data["lon"]
+            }
+
+            timezone = get_tz(float(data["lon"]), float(data["lat"]))
+
+            return (city, coords, timezone)
         except Exception:
             return None
         
     def _get_weather_json(self):
         try:
-            url = f"{self.base_url}/{self.location}?format=j1"
+            url = f"{self.base_url}/{self.city}?format=j1"
+            response = requests.get(url)
+            response.raise_for_status()
+            return response.json()
+        except Exception:
+            return None
+        
+    def _get_astronomy_json(self):
+        try:
+            url = f"https://api.sunrise-sunset.org/json?lat={self.coords["lat"]}&lng={self.coords["lng"]}&tzid={self.timezone}"
             response = requests.get(url)
             response.raise_for_status()
             return response.json()
@@ -54,32 +95,38 @@ class Weather:
         return current_weather
     
     def get_astronomy_data(self):
-        data = self._get_weather_json()
+        astronomy_data = self._get_astronomy_json()["results"]
+        weather_data = self._get_weather_json()["weather"][0]["astronomy"][0]
 
-        # Processing the astronomy data
-        weather_data = data["weather"]
-
-        full_astronomy_data = []
-
-        for day in weather_data:
-            astronomy_data = day["astronomy"][0]
-            astronomy = {
-                "date": day["date"],
-                "sun": {
-                    "sunrise": astronomy_data["sunrise"],
-                    "sunset": astronomy_data["sunset"],
+        # Processing the data
+        astronomy = {
+            "sun": {
+                "sunrise": astronomy_data["sunrise"],
+                "sunset": astronomy_data["sunset"],
+                "solar_noon": astronomy_data["solar_noon"],
+                "day_length": astronomy_data["day_length"],
+                "civil_twilight": {
+                    "begin": astronomy_data["civil_twilight_begin"],
+                    "end": astronomy_data["civil_twilight_end"],
                 },
-                "moon": {
-                    "moonrise": astronomy_data["moonrise"],
-                    "moonset": astronomy_data["moonset"],
-                    "moon_phase": astronomy_data["moon_phase"],
-                    "moon_illumination": astronomy_data["moon_illumination"],
+                "nautical_twilight": {
+                    "begin": astronomy_data["nautical_twilight_begin"],
+                    "end": astronomy_data["nautical_twilight_end"],
+                },
+                "astronomical_twilight": {
+                    "begin": astronomy_data["astronomical_twilight_begin"],
+                    "end": astronomy_data["astronomical_twilight_end"],
                 }
+            },
+            "moon": {
+                "moonrise": weather_data["moonrise"],
+                "moonset": weather_data["moonset"],
+                "moon_phase": weather_data["moon_phase"],
+                "moon_illumination": weather_data["moon_illumination"],
             }
+        }
 
-            full_astronomy_data.append(astronomy)
-
-        return full_astronomy_data
+        return astronomy
     
     def get_forecast(self):
         data = self._get_weather_json()
@@ -154,5 +201,5 @@ class Weather:
 
 if __name__ == "__main__":
     w = Weather()
-    w.location = w.get_location_by_user_ip()
-    print(w.get_forecast())
+    w.city, w.coords, w.timezone = w.get_location_by_name("sydney")
+    print(w.get_astronomy_data())

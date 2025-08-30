@@ -292,6 +292,32 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "tzfpy"
+version = "1.0.0"
+description = "Probably the fastest Python package to convert longitude/latitude to timezone name"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "tzfpy-1.0.0-cp313-cp313t-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:34b5e986d927a6aca1d2ba4ccffd15d5380fd6571064094c7fed157492ebc809"},
+    {file = "tzfpy-1.0.0-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:54159aa90f09b51fe26c76cd512b7b12275dac764f5e8bcb4f963adf99afb076"},
+    {file = "tzfpy-1.0.0-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7369846a1f24339aa634054bd672dfbe00ee7bee832fa7884130639d19d37a3b"},
+    {file = "tzfpy-1.0.0-cp313-cp313t-manylinux_2_24_armv7l.whl", hash = "sha256:3ed638a61131b7e84a4d89e4f7a1590a81aa0ff0262c04fcc7aa3882dbfaba15"},
+    {file = "tzfpy-1.0.0-cp39-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:ed4cf971bd93291f12879092d0afcba4c3abde8e7840ac1b4ef7caa55da8a734"},
+    {file = "tzfpy-1.0.0-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:222dbb1f8581a0d124579f8b6aa6a51b5a91e4582e3ee51580806d902ad0997c"},
+    {file = "tzfpy-1.0.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:11290c1f8c87e33760d953acbfa1b0f2ed5d2bb402699cce8016abb9880063be"},
+    {file = "tzfpy-1.0.0-cp39-abi3-manylinux_2_24_armv7l.whl", hash = "sha256:8750466ba55b5d46cc365e33c643dca3af7d84d76ed8a2199dbf53e32b3a29cc"},
+    {file = "tzfpy-1.0.0-cp39-abi3-musllinux_1_1_aarch64.whl", hash = "sha256:d7d77c48a5bd42821ae95757cf9d5118b25f72ad3116772b3349b5fd04012ec8"},
+    {file = "tzfpy-1.0.0-cp39-abi3-musllinux_1_1_x86_64.whl", hash = "sha256:b74055119068111c82f330dbcdc62f9e0c3deed4c84e3523d7312db71bc97b33"},
+    {file = "tzfpy-1.0.0-cp39-abi3-win_amd64.whl", hash = "sha256:25528601b43db135414be5388ed11d73dc0e47b5e7f27eabf846b344a14e83df"},
+    {file = "tzfpy-1.0.0-cp39-abi3-win_arm64.whl", hash = "sha256:d6c4d60bb00c18ee589899f667d5170ffbcf3b087312c223a5b6ae246d64c5fe"},
+    {file = "tzfpy-1.0.0.tar.gz", hash = "sha256:8852bfcf392d4bbf980c88d9c9980d79dad559731b4a6b658a2875a2fa611f3b"},
+]
+
+[package.extras]
+pytz = ["pytz (>=2025.2)"]
+tzdata = ["tzdata (>=2025.2)"]
+
+[[package]]
 name = "urllib3"
 version = "2.5.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -328,4 +354,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.13"
-content-hash = "2667ebd07caf8d74c3b4dfc094f540dcf1e964145fdbf64b92a68af5480567ca"
+content-hash = "1a94b63a923e3659c0b882ef71a3b7d90324c602092d08a666f8de2efd49db8e"
