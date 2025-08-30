@@ -15,7 +15,13 @@
             <a href="{{ url_for('index') }}" class="navbar-brand text-light">WeatherVane</a>
             <ul class="navbar-nav">
                 <li class="navbar-item">
-                    <a class="nav-link text-white" href="#">Link</a>
+                    <a class="nav-link text-white" href="{{ url_for('current') }}">Current Weather ☁️</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link text-white" href="{{ url_for('forecast') }}">Forecast 📆</a>
+                </li>
+                <li class="navbar-item">
+                    <a class="nav-link text-white" href="{{ url_for('astronomy') }}">Astronomy 🌙</a>
                 </li>
             </ul>
         </div>
