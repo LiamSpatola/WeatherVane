@@ -15,10 +15,10 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-warning text-dark">☀️ Sun</div>
                 <div class="card-body">
-                    <p><b>Sunrise:</b> {{ astronomy["sun"]["sunrise"] }}</p>
-                    <p><b>Sunset:</b> {{ astronomy["sun"]["sunset"] }}</p>
-                    <p><b>Solar Noon:</b> {{ astronomy["sun"]["solar_noon"] }}</p>
-                    <p><b>Day Length:</b> {{ astronomy["sun"]["day_length"] }}</p>
+                    <p><b>Sunrise:</b> {{ astronomy.sun.sunrise }}</p>
+                    <p><b>Sunset:</b> {{ astronomy.sun.sunset }}</p>
+                    <p><b>Solar Noon:</b> {{ astronomy.sun.solar_noon }}</p>
+                    <p><b>Day Length:</b> {{ astronomy.sun.day_length }}</p>
                 </div>
             </div>
         </div>
@@ -28,9 +28,9 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-secondary text-white">✨ Twilight</div>
                 <div class="card-body">
-                    <p><b>Civil Twilight:</b> {{ astronomy["sun"]["civil_twilight"]["begin"] }} – {{ astronomy["sun"]["civil_twilight"]["end"] }}</p>
-                    <p><b>Nautical Twilight:</b> {{ astronomy["sun"]["nautical_twilight"]["begin"] }} – {{ astronomy["sun"]["nautical_twilight"]["end"] }}</p>
-                    <p><b>Astronomical Twilight:</b> {{ astronomy["sun"]["astronomical_twilight"]["begin"] }} – {{ astronomy["sun"]["astronomical_twilight"]["end"] }}</p>
+                    <p><b>Civil Twilight:</b> {{ astronomy.sun.civil_twilight.begin }} – {{ astronomy.sun.civil_twilight.end }}</p>
+                    <p><b>Nautical Twilight:</b> {{ astronomy.sun.nautical_twilight.begin }} – {{ astronomy.sun.nautical_twilight.end }}</p>
+                    <p><b>Astronomical Twilight:</b> {{ astronomy.sun.astronomical_twilight.begin }} – {{ astronomy.sun.astronomical_twilight.end }}</p>
                 </div>
             </div>
         </div>
@@ -40,10 +40,10 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-dark text-white">🌙 Moon</div>
                 <div class="card-body">
-                    <p><b>Moonrise:</b> {{ astronomy["moon"]["moonrise"] }}</p>
-                    <p><b>Moonset:</b> {{ astronomy["moon"]["moonset"] }}</p>
-                    <p><b>Phase:</b> {{ astronomy["moon"]["moon_phase"] }}</p>
-                    <p><b>Illumination:</b> {{ astronomy["moon"]["moon_illumination"] }}%</p>
+                    <p><b>Moonrise:</b> {{ astronomy.moon.moonrise }}</p>
+                    <p><b>Moonset:</b> {{ astronomy.moon.moonset }}</p>
+                    <p><b>Phase:</b> {{ astronomy.moon.moon_phase }}</p>
+                    <p><b>Illumination:</b> {{ astronomy.moon.moon_illumination }}%</p>
                 </div>
             </div>
         </div>

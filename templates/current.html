@@ -6,7 +6,7 @@
 <div class="container my-4">
     <h2 class="mb-4 text-center">
         Weather for {{ w.city }}<br>
-        <small class="text-muted">as at {{ current["datetime"]["date"] }} {{ current["datetime"]["time"] }}</small>
+        <small class="text-muted">as at {{ current.datetime.date }} {{ current.datetime.time }}</small>
     </h2>
 
     <div class="row g-4">
@@ -16,8 +16,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-primary text-white">🌡️ Temperature</div>
                 <div class="card-body">
-                    <p><b>Air:</b> {{ current["temperature"]["air_temp"] }}°C</p>
-                    <p><b>Feels Like:</b> {{ current["temperature"]["apparent_temp"] }}°C</p>
+                    <p><b>Air:</b> {{ current.temperature.air_temp }}°C</p>
+                    <p><b>Feels Like:</b> {{ current.temperature.apparent_temp }}°C</p>
                 </div>
             </div>
         </div>
@@ -27,8 +27,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-info text-white">💧 Humidity</div>
                 <div class="card-body">
-                    <p><b>Relative:</b> {{ current["humidity"]["relative"] }}%</p>
-                    <p><b>Dew Point:</b> {{ current["humidity"]["dewpoint"] }}°C</p>
+                    <p><b>Relative:</b> {{ current.humidity.relative }}%</p>
+                    <p><b>Dew Point:</b> {{ current.humidity.dewpoint }}°C</p>
                 </div>
             </div>
         </div>
@@ -38,11 +38,11 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-secondary text-white">🌧️ Precipitation (Since Previous Hour)</div>
                 <div class="card-body">
-                    <p><b>Probability:</b> {{ current["precipitation"]["probability"] }}%</p>
-                    <p><b>Total:</b> {{ current["precipitation"]["amount"] }} mm</p>
-                    <p><b>Rain:</b> {{ current["precipitation"]["rain"] }} mm</p>
-                    <p><b>Showers:</b> {{ current["precipitation"]["showers"] }} mm</p>
-                    <p><b>Snowfall:</b> {{ current["precipitation"]["snowfall"] }} mm</p>
+                    <p><b>Probability:</b> {{ current.precipitation.probability }}%</p>
+                    <p><b>Total:</b> {{ current.precipitation.amount }} mm</p>
+                    <p><b>Rain:</b> {{ current.precipitation.rain }} mm</p>
+                    <p><b>Showers:</b> {{ current.precipitation.showers }} mm</p>
+                    <p><b>Snowfall:</b> {{ current.precipitation.snowfall }} mm</p>
                 </div>
             </div>
         </div>
@@ -52,8 +52,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-warning text-dark">🌍 Pressure</div>
                 <div class="card-body">
-                    <p><b>MSL:</b> {{ current["pressure"]["sea_level"] }} hPa</p>
-                    <p><b>Surface:</b> {{ current["pressure"]["surface"] }} hPa</p>
+                    <p><b>MSL:</b> {{ current.pressure.sea_level }} hPa</p>
+                    <p><b>Surface:</b> {{ current.pressure.surface }} hPa</p>
                 </div>
             </div>
         </div>
@@ -63,10 +63,10 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-dark text-white">☁️ Cloud Cover</div>
                 <div class="card-body">
-                    <p><b>Total:</b> {{ current["cloud_cover"]["total"] }}%</p>
-                    <p><b>Low:</b> {{ current["cloud_cover"]["low"] }}%</p>
-                    <p><b>Mid:</b> {{ current["cloud_cover"]["mid"] }}%</p>
-                    <p><b>High:</b> {{ current["cloud_cover"]["high"] }}%</p>
+                    <p><b>Total:</b> {{ current.cloud_cover.total }}%</p>
+                    <p><b>Low:</b> {{ current.cloud_cover.low }}%</p>
+                    <p><b>Mid:</b> {{ current.cloud_cover.mid }}%</p>
+                    <p><b>High:</b> {{ current.cloud_cover.high }}%</p>
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-success text-white">💨 Wind</div>
                 <div class="card-body">
-                    <p><b>Speed:</b> {{ current["wind"]["speed"] }} km/h at {{ current["wind"]["direction"] }}°</p>
-                    <p><b>Gusts:</b> {{ current["wind"]["gusts"] }} km/h</p>
+                    <p><b>Speed:</b> {{ current.wind.speed }} km/h at {{ current.wind.direction }}°</p>
+                    <p><b>Gusts:</b> {{ current.wind.gusts }} km/h</p>
                 </div>
             </div>
         </div>
@@ -87,8 +87,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-danger text-white">✨ Other</div>
                 <div class="card-body">
-                    <p><b>Visibility:</b> {{ current["visibility"] }} km</p>
-                    <p><b>UV Index:</b> {{ current["uv_index"] }}</p>
+                    <p><b>Visibility:</b> {{ current.visibility }} km</p>
+                    <p><b>UV Index:</b> {{ current.uv_index }}</p>
                 </div>
             </div>
         </div>
