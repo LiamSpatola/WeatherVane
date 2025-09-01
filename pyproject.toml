@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "weathervane"
-version = "0.1.0"
+version = "1.0.0"
 description = "A simple flask web app to get weather data"
 authors = ["Liam Spatola <liam.spatola@gmail.com>"]
 license = "GNU GPLv3"
