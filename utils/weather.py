@@ -267,5 +267,5 @@ class Weather:
 
 if __name__ == "__main__":
     w = Weather()
-    w.city, w.coords, w.timezone = w.get_location_by_user_ip
+    w.city, w.coords, w.timezone = w.get_location_by_user_ip()
     print(w.get_current_weather())
