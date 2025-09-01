@@ -6,7 +6,7 @@
 <div class="container my-5">
     <h1 class="text-center mb-4">Welcome.</h1>
 
-    <form method="post">
+    <form method="post" action="{{ url_for('index') }}">
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="use_my_location" name="use_my_location" {% if not w.city %}checked{% endif %}>
             <label class="form-check-label" for="use_my_location"><b>Use my current location</b></label>
@@ -14,7 +14,7 @@
 
         <div class="mb-3">
             <label for="place_name" class="form-label"><b>Location</b></label>
-            <input type="text" class="form-control" id="place_name" name="place_name" placeholder="City, Country (e.g. Sydney, Australia)" value="{{ w.city }}">
+            <input type="text" class="form-control" id="place_name" name="place_name" placeholder="City, Country (e.g. Sydney, Australia)" {% if w.city %}value="{{ w.city }}"{% endif %}>
         </div>
 
         <div class="mb-3">
@@ -31,6 +31,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update Location</button>
+        <button type="submit" formaction="{{ url_for('reset_session') }}" class="btn btn-danger">Reset</button>
     </form>
 </div>
 
