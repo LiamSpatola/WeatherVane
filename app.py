@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 global w
 w = Weather()
-w.city, w.coords, w.timezone = w.get_location_by_name("north ryde")
+w.city, w.coords, w.timezone = w.get_location_by_user_ip()
 
 @app.route("/")
 def index():
