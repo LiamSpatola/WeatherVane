@@ -1,17 +1,44 @@
 from flask import Flask, render_template, request, redirect, url_for
+from zoneinfo import available_timezones
 
 from utils.weather import Weather
 
 
 app = Flask(__name__)
 
-global w
 w = Weather()
 w.city, w.coords, w.timezone = w.get_location_by_user_ip()
 
-@app.route("/")
+timezones = sorted(available_timezones(), key=lambda tz: (tz.split("/")[0], tz.split("/")[1] if "/" in tz else ""))
+
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    if request.method == "POST": # Checking if the user is updating their location
+        # Getting the form data
+        use_my_location = request.form.get("use_location")
+        place_name = request.form.get("place_name")
+        tz = request.form.get("timezone")
+
+        # Updating the location
+        if use_my_location:
+            w.city, w.coords, w.timezone = w.get_location_by_user_ip()
+        else:
+            if not place_name:
+                # Fallback to user location if no place entered
+                w.city, w.coords, w.timezone = w.get_location_by_user_ip()
+            else:
+                w.city, w.coords, w.timezone = w.get_location_by_name(place_name)
+        
+        # Overriding the timezone if the user selected a custom timezone
+        if tz and tz != "auto":
+            w.timezone = tz
+
+        # 
+        
+        # Redirecting the user to the current weather page
+        return redirect(url_for("current"))
+
+    return render_template("index.html", w=w, timezones=timezones)
 
 
 @app.route("/current")

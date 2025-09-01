@@ -292,6 +292,17 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "tzdata"
+version = "2025.2"
+description = "Provider of IANA time zone data"
+optional = false
+python-versions = ">=2"
+files = [
+    {file = "tzdata-2025.2-py2.py3-none-any.whl", hash = "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8"},
+    {file = "tzdata-2025.2.tar.gz", hash = "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"},
+]
+
+[[package]]
 name = "tzfpy"
 version = "1.0.0"
 description = "Probably the fastest Python package to convert longitude/latitude to timezone name"
@@ -354,4 +365,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.13"
-content-hash = "1a94b63a923e3659c0b882ef71a3b7d90324c602092d08a666f8de2efd49db8e"
+content-hash = "810973b9408ba7d18faacff5ef01d1ad3630bd1d42cbdfe80959d6927d41c0fd"

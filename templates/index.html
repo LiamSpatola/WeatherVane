@@ -3,5 +3,49 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Hello, world!</h1>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Welcome.</h1>
+
+    <form method="post">
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="use_my_location" name="use_my_location" {% if not w.city %}checked{% endif %}>
+            <label class="form-check-label" for="use_my_location"><b>Use my current location</b></label>
+        </div>
+
+        <div class="mb-3">
+            <label for="place_name" class="form-label"><b>Location</b></label>
+            <input type="text" class="form-control" id="place_name" name="place_name" placeholder="City, Country (e.g. Sydney, Australia)" value="{{ w.city }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="timezone" class="form-label"><b>Timezone</b></label>
+            <select class="form-select" id="timezone" name="timezone">
+            {% if w.timezone %}
+                <option value="{{ w.timezone }}" selected>{{ w.timezone }}</option>
+            {% endif %}
+            <option value="auto" {% if not w.timezone %}selected{% endif %}>Auto</option>
+                {% for tz in timezones %}
+                    <option value="{{ tz }}">{{ tz }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Location</button>
+    </form>
+</div>
+
+<script>
+    const useLocationCheckbox = document.getElementById('use_my_location');
+    const locationInput = document.getElementById('place_name');
+
+    function toggleLocation() {
+        locationInput.disabled = useLocationCheckbox.checked; // actual disabling
+    }
+
+    // Run on page load
+    toggleLocation();
+
+    // Run when checkbox changes
+    useLocationCheckbox.addEventListener('change', toggleLocation);
+</script>
 {% endblock %}
