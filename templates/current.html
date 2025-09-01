@@ -4,10 +4,7 @@
 
 {% block content %}
 <div class="container my-4">
-    <h2 class="mb-4 text-center">
-        Weather for {{ w.city }}<br>
-        <small class="text-muted">as at {{ current.datetime.date }} {{ current.datetime.time }}</small>
-    </h2>
+    <h2 class="mb-4 text-center">Weather for {{ w.city }} as at {{ current.datetime.date }} {{ current.datetime.time }}</h2>
 
     <div class="row g-4">
 

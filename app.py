@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 from utils.weather import Weather
 
@@ -22,7 +22,18 @@ def current():
 
 @app.route("/forecast")
 def forecast():
-    return render_template("forecast.html", w=w)
+    daily = w.get_forecast()
+    return render_template("forecast.html", w=w, daily=daily)
+
+
+@app.route("/hourly_forecast")
+def hourly_forecast():
+    date = request.args.get("date")
+    if not date:
+        return redirect(url_for("index"))
+    
+    hourly = w.get_hourly_forecast(date)
+    return render_template("hourly_forecast.html", w=w, hourly=hourly, date=date)
 
 
 @app.route("/astronomy")

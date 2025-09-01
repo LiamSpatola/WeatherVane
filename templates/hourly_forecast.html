@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">{% endblock %}
+
+{% block title %}Forecast{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4 text-center">
+        Hourly Forecast for {{ w.city }} on {{ date }}
+    </h2>
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Hour</th>
+                        <th>Air Temp. (°C)</th>
+                        <th>Feels Like Temp. (°C)</th>
+                        <th>Relative Humidity (%)</th>
+                        <th>Dew Point (°C)</th>
+                        <th>Precip. Probability (%)</th>
+                        <th>Precip. Amount (mm)</th>
+                        <th>Rain Amount (mm)</th>
+                        <th>Showers Amount (mm)</th>
+                        <th>Snowfall Amount (mm)</th>
+                        <th>MSL Pressure (hPa)</th>
+                        <th>Surface Pressure (hPa)</th>
+                        <th>Total Cloud Cover (%)</th>
+                        <th>Low Cloud Cover (%)</th>
+                        <th>Mid Cloud Cover (%)</th>
+                        <th>High Cloud Cover (%)</th>
+                        <th>Visibility (km)</th>
+                        <th>Wind Speed (km/h)</th>
+                        <th>Gusts (km/h)</th>
+                        <th>Wind Dir. (°)</th>
+                        <th>UV Index</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hour in hourly %}
+                        <tr>
+                            <td>{{ hour.time }}</td>
+                            <td>{{ hour.temperature.air_temp }}</td>
+                            <td>{{ hour.temperature.apparent_temp }}</td>
+                            <td>{{ hour.humidity.relative }}</td>
+                            <td>{{ hour.humidity.dewpoint }}</td>
+                            <td>{{ hour.precipitation.probability }}</td>
+                            <td>{{ hour.precipitation.amount }}</td>
+                            <td>{{ hour.precipitation.rain }}</td>
+                            <td>{{ hour.precipitation.showers }}</td>
+                            <td>{{ hour.precipitation.snowfall }}</td>
+                            <td>{{ hour.pressure.sea_level }}</td>
+                            <td>{{ hour.pressure.surface }}</td>
+                            <td>{{ hour.cloud_cover.total }}</td>
+                            <td>{{ hour.cloud_cover.low }}</td>
+                            <td>{{ hour.cloud_cover.mid }}</td>
+                            <td>{{ hour.cloud_cover.high }}</td>
+                            <td>{{ hour.visibility }}</td>
+                            <td>{{ hour.wind.speed }}</td>
+                            <td>{{ hour.wind.gusts }}</td>
+                            <td>{{ hour.wind.direction }}</td>
+                            <td>{{ hour.uv_index }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

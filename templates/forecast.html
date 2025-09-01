@@ -1,7 +1,111 @@
 {% extends "base.html" %}
 
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">{% endblock %}
+
 {% block title %}Forecast{% endblock %}
 
 {% block content %}
-<h1>Hello, world!</h1>
+<div class="container my-4">
+    <h2 class="mb-4 text-center">
+        7 Day Forecast for {{ w.city }}
+    </h2>
+
+    <div class="accordion">
+        {% for day in daily %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ loop.index }}" aria-expanded="false" aria-controls="collapse-{{ loop.index }}">{{ day.date }}</button>
+                </h2>
+                
+                <div id="collapse-{{ loop.index }}" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <!-- Temperature -->
+                        <h5>Temperature</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Air Minimum:</strong> {{ day.temperature.temp_min }}°C</div>
+                            <div class="col-4"><strong>Air Mean:</strong> {{ day.temperature.temp_mean }}°C</div>
+                            <div class="col-4"><strong>Air Maximum:</strong> {{ day.temperature.temp_max }}°C</div>
+                            <div class="col-4"><strong>Feels Like Minimum:</strong> {{ day.temperature.apparent_min }}°C</div>
+                            <div class="col-4"><strong>Feels Like Mean:</strong> {{ day.temperature.apparent_mean }}°C</div>
+                            <div class="col-4"><strong>Feels Like Maximum:</strong> {{ day.temperature.apparent_max }}°C</div>
+                        </div>
+
+                        <!-- Humidity -->
+                        <h5 class="mt-3">Humidity</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Relative Minimum:</strong> {{ day.humidity.relative_min }}%</div>
+                            <div class="col-4"><strong>Relative Mean:</strong> {{ day.humidity.relative_mean }}%</div>
+                            <div class="col-4"><strong>Relative Maximum:</strong> {{ day.humidity.relative_max }}%</div>
+                            <div class="col-4"><strong>Dewpoint Minimum:</strong> {{ day.humidity.dewpoint_min }}°C</div>
+                            <div class="col-4"><strong>Dewpoint Mean:</strong> {{ day.humidity.dewpoint_mean }}°C</div>
+                            <div class="col-4"><strong>Dewpoint Maximum:</strong> {{ day.humidity.dewpoint_max }}°C</div>
+                        </div>
+
+                        <!-- Precipitation -->
+                        <h5 class="mt-3">Precipitation</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Probability Minimum:</strong> {{ day.precipitation.probability_min }}%</div>
+                            <div class="col-4"><strong>Probability Mean:</strong> {{ day.precipitation.probability_mean }}%</div>
+                            <div class="col-4"><strong>Probability Maximum:</strong> {{ day.precipitation.probability_max }}%</div>
+                            <div class="col-4"><strong>Total Hours:</strong> {{ day.precipitation.total_hours }}</div>
+                            <div class="col-4"><strong>Total Sum:</strong> {{ day.precipitation.total_sum }} mm</div>
+                            <div class="col-4"><strong>Rain Sum:</strong> {{ day.precipitation.rain_sum }} mm</div>
+                            <div class="col-4"><strong>Showers Sum:</strong> {{ day.precipitation.showers_sum }} mm</div>
+                            <div class="col-4"><strong>Snowfall Sum:</strong> {{ day.precipitation.snowfall_sum }} mm</div>
+                        </div>
+
+                        <!-- Pressure -->
+                        <h5 class="mt-3">Pressure</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Sea Level Minimum:</strong> {{ day.pressure.sea_level_min }} hPa</div>
+                            <div class="col-4"><strong>Sea Level Mean:</strong> {{ day.pressure.sea_level_mean }} hPa</div>
+                            <div class="col-4"><strong>Sea Level Maximum:</strong> {{ day.pressure.sea_level_max }} hPa</div>
+                            <div class="col-4"><strong>Surface Minimum:</strong> {{ day.pressure.surface_min }} hPa</div>
+                            <div class="col-4"><strong>Surface Mean:</strong> {{ day.pressure.surface_mean }} hPa</div>
+                            <div class="col-4"><strong>Surface Maximum:</strong> {{ day.pressure.surface_max }} hPa</div>
+                        </div>
+
+                        <!-- Cloud Cover -->
+                        <h5 class="mt-3">Cloud Cover</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Minimum:</strong> {{ day.cloud_cover.min }}%</div>
+                            <div class="col-4"><strong>Mean:</strong> {{ day.cloud_cover.mean }}%</div>
+                            <div class="col-4"><strong>Maximum:</strong> {{ day.cloud_cover.max }}%</div>
+                        </div>
+
+                        <!-- Visibility -->
+                        <h5 class="mt-3">Visibility</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Minimum:</strong> {{ day.visibility.min }} km</div>
+                            <div class="col-4"><strong>Mean:</strong> {{ day.visibility.mean }} km</div>
+                            <div class="col-4"><strong>Maximum:</strong> {{ day.visibility.max }} km</div>
+                        </div>
+
+                        <!-- Wind -->
+                        <h5 class="mt-3">Wind</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Minimum Speed:</strong> {{ day.wind.min_speed }} km/h at {{ day.wind.direction }}°</div>
+                            <div class="col-4"><strong>Mean Speed:</strong> {{ day.wind.mean_speed }} km/h at {{ day.wind.direction }}°</div>
+                            <div class="col-4"><strong>Maximum Speed:</strong> {{ day.wind.max_speed }} km/h at {{ day.wind.direction }}°</div>
+                            <div class="col-4"><strong>Minimum Gusts:</strong> {{ day.wind.min_gusts }} km/h</div>
+                            <div class="col-4"><strong>Mean Gusts:</strong> {{ day.wind.mean_gusts }} km/h</div>
+                            <div class="col-4"><strong>Maximum Gusts:</strong> {{ day.wind.max_gusts }} km/h</div>
+                        </div>
+
+                        <!-- UV Index -->
+                        <h5 class="mt-3">UV Index</h5>
+                        <div class="row">
+                            <div class="col-4"><strong>Maximum Index:</strong> {{ day.uv_index.index }}</div>
+                            <div class="col-4"><strong>Maximum Clear Sky Index:</strong> {{ day.uv_index.clear_sky_index }}</div>
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="{{ url_for('hourly_forecast', date=day.date) }}">View hourly forecast</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
